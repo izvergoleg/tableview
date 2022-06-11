@@ -1,5 +1,5 @@
 import psycopg2
-from config import config
+from configs import config
 
 def connect():
 
@@ -7,7 +7,7 @@ def connect():
     conn = None
     try:
         # read connection parameters
-        params = config()
+        params = config.config()
 
         # connect to the PostgreSQL server
         print('Connecting to the PostgreSQL database...')
@@ -37,7 +37,7 @@ def get_data():
     """ query data from the person table """
     conn = None
     try:
-        params = config()
+        params = config.config()
         conn = psycopg2.connect(**params)
         cur = conn.cursor()
         cur.execute("SELECT * "
@@ -64,7 +64,7 @@ def delete_pers(person_id):
     print(person_id)
     try:
         # read database configuration
-        params = config()
+        params = config.config()
         # connect to the PostgreSQL database
         conn = psycopg2.connect(**params)
         # create a new cursor
@@ -92,7 +92,7 @@ def update_row(person_id, fio):
     updated_rows = 0
     try:
         # read database configuration
-        params = config()
+        params = config.config()
         # connect to the PostgreSQL database
         conn = psycopg2.connect(**params)
         # create a new cursor
@@ -120,7 +120,7 @@ def getRowData(pers_id):
     row = None
     pers = int(pers_id)
     try:
-        params = config()
+        params = config.config()
         conn = psycopg2.connect(**params)
         cur = conn.cursor()
         cur.execute(_sql, (pers,))

@@ -184,7 +184,7 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     app.setStyle('Fusion')
     # Open the style sheet file and read it
-    with open('style.qss', 'r') as f:
+    with open('.\configs\style.qss', 'r') as f:
         style = f.read()
         # Set the current style sheet
     # app.setStyleSheet(style) #Эксперименты со стилем оформления. Можно раскоментировать эту строку и стиль изменится
