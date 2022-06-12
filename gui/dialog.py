@@ -153,17 +153,17 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
-        self.label_6_address.setText(QCoreApplication.translate("Dialog", u"\u0410\u0434\u0440\u0435\u0441", None))
-        self.label_7_code1.setText(QCoreApplication.translate("Dialog", u"\u041a\u043e\u0434", None))
-        self.label_4_position.setText(QCoreApplication.translate("Dialog", u"\u0414\u043e\u043b\u0436\u043d\u043e\u0441\u0442\u044c", None))
-        self.label_5_city.setText(QCoreApplication.translate("Dialog", u"\u0413\u043e\u0440\u043e\u0434", None))
+        self.label_6_address.setText(QCoreApplication.translate("Dialog", u"Address", None))
+        self.label_7_code1.setText(QCoreApplication.translate("Dialog", u"Code", None))
+        self.label_4_position.setText(QCoreApplication.translate("Dialog", u"Position", None))
+        self.label_5_city.setText(QCoreApplication.translate("Dialog", u"City", None))
         self.label_ID.setText(QCoreApplication.translate("Dialog", u"ID", None))
-        self.label_8_code2.setText(QCoreApplication.translate("Dialog", u"\u0415\u0449\u0435 \u043a\u043e\u0434", None))
-        self.label_9_country.setText(QCoreApplication.translate("Dialog", u"\u0421\u0442\u0440\u0430\u043d\u0430", None))
-        self.label_3_comp.setText(QCoreApplication.translate("Dialog", u"\u041a\u043e\u043c\u043f\u0430\u043d\u0438\u044f", None))
+        self.label_8_code2.setText(QCoreApplication.translate("Dialog", u"Second Code", None))
+        self.label_9_country.setText(QCoreApplication.translate("Dialog", u"Country", None))
+        self.label_3_comp.setText(QCoreApplication.translate("Dialog", u"Company", None))
         self.lineEdit_ID.setPlaceholderText(QCoreApplication.translate("Dialog", u"ID", None))
-        self.label_2_fio.setText(QCoreApplication.translate("Dialog", u"\u0424\u0418\u041e", None))
-        self.label_10_phone1.setText(QCoreApplication.translate("Dialog", u"\u0422\u0435\u043b\u0435\u0444\u043e\u043d", None))
-        self.label_11_phone2.setText(QCoreApplication.translate("Dialog", u"\u0422\u0435\u043b\u0435\u0444\u043e\u043d 2", None))
+        self.label_2_fio.setText(QCoreApplication.translate("Dialog", u"Name", None))
+        self.label_10_phone1.setText(QCoreApplication.translate("Dialog", u"Phone", None))
+        self.label_11_phone2.setText(QCoreApplication.translate("Dialog", u"Phone2", None))
     # retranslateUi
 

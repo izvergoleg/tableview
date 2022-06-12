@@ -8,8 +8,7 @@ class DialogWindowChange(Ui_Dialog, QtWidgets.QDialog):
         super().__init__()
         self.setupUi(self)
         self.pers_id = pers_id
-        self.person_data = databaseOperations.getRowData(self.pers_id) #создать словарь из данных нужной строки из БД
-        print('В диалог идет это:', self.person_data[2])
+        self.person_data = databaseOperations.getRowData(self.pers_id)
         self.label_ID.setText('ID:' + ' ' + str(self.pers_id))
         self.lineEdit_2_fio.setText(str(self.person_data[2]))
         self.lineEdit_ID.setText(str(self.person_data[0]))
@@ -28,9 +27,11 @@ class DialogWindowChange(Ui_Dialog, QtWidgets.QDialog):
     def accept(self) -> None:
 
         print("OK clicked")
-        self.fio = self.lineEdit_2_fio.text()
-        print(self.pers_id, self.fio)
-        databaseOperations.update_row(self.pers_id, self.fio)
+        self.lineEdit_2_fio.text()
+        databaseOperations.update_row(self.pers_id, self.lineEdit_ID.text(), self.lineEdit_2_fio.text(), self.lineEdit_3_comp.text(),
+                                      self.lineEdit_4_position.text(), self.lineEdit_5_city.text(), self.lineEdit_6_address.text(),
+                                      self.lineEdit_7_code1.text(), self.lineEdit_8_code2.text(), self.lineEdit_9_country.text(),
+                                      self.lineEdit_10_phone1.text(), self.lineEdit_11_phone2.text())
         self.done(True)
 
 

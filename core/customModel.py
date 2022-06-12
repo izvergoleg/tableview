@@ -3,10 +3,10 @@ from core import databaseOperations
 from gui import myDialogs
 
 '''
-Создаем свой класс CustomTableModel наследуемся от абстрактной модели.
-обязательно наличие минимум трех функций: rowCount, columnCount, data
-CustomTableModel класс используется представлением tableView
-то есть tableView обращается к нашей кастомной модели CustomTableModel
+Creating our own CustomTableModel Class inherits from the Abstract model.
+At least three functions are required: rowCount, columnCount, data.
+The CustomTableModel Class is used by the tableView,
+ that is, the tableView refers to our custom model CustomTableModel
 '''
 
 class CustomTableModel(QtCore.QAbstractTableModel):

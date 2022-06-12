@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main.ui'
+## Form generated from reading UI file 'MainWindow.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.2
 ##
@@ -27,6 +27,10 @@ class Ui_MainWindow(object):
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1734, 1080)
         MainWindow.setMaximumSize(QSize(1920, 1080))
+        self.actionHelp = QAction(MainWindow)
+        self.actionHelp.setObjectName(u"actionHelp")
+        self.actionAbout = QAction(MainWindow)
+        self.actionAbout.setObjectName(u"actionAbout")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
@@ -84,6 +88,8 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.menubar.addAction(self.menu.menuAction())
+        self.menu.addAction(self.actionHelp)
+        self.menu.addAction(self.actionAbout)
 
         self.retranslateUi(MainWindow)
 
@@ -92,10 +98,12 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u0441\u0442 \u0411\u0414 Postgres", None))
+        self.actionHelp.setText(QCoreApplication.translate("MainWindow", u"Help", None))
+        self.actionAbout.setText(QCoreApplication.translate("MainWindow", u"About", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"First project: GUI for PostgreSQL 14", None))
 #if QT_CONFIG(tooltip)
         self.searchbar.setToolTip("")
 #endif // QT_CONFIG(tooltip)
-        self.menu.setTitle(QCoreApplication.translate("MainWindow", u"\u041e \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0435", None))
+        self.menu.setTitle(QCoreApplication.translate("MainWindow", u"About", None))
     # retranslateUi
 

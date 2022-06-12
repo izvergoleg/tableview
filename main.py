@@ -12,7 +12,7 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
-        self.setWindowTitle("Учет всего!")
+        self.setWindowTitle("Accounting for everything!")
         self.setWindowIcon(QtGui.QIcon("icons/database.png"))
         self.showMaximized()
         databaseOperations.connect()
@@ -20,16 +20,16 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.model = customModel.CustomTableModel(self.user_data)
         self.proxymodel = QtCore.QSortFilterProxyModel()
         self.proxymodel.setSourceModel(self.model)
-        self.proxymodel.setFilterKeyColumn(-1)  # -1 означает, что фильтрация будет работать по всем колонкам
+        self.proxymodel.setFilterKeyColumn(-1)  # -1 this means that the filter is applied to all columns
         self.proxymodel.setFilterCaseSensitivity(
             QtCore.Qt.CaseInsensitive)
         self.tableView.setModel(self.proxymodel)
 
-        # создание кастомного заголовка таблицы #
-        self.modelHeader = QtGui.QStandardItemModel()  # сначала создадим модель заголовка и положим в эту модель названия заголовков
+        # creating a custom table header #
+        self.modelHeader = QtGui.QStandardItemModel()  # first, let's create a header model and put the titles of the headers into this model
         self.modelHeader.setHorizontalHeaderLabels(
-            ['     Кодовое имя   ', '           Компания        ', 'ФИО', 'Должность', 'Адрес', 'Город',
-             'Код', 'Еще код', 'Страна', 'Телефон', 'Телефон 2', 'ID'])
+            ['     Code Name   ', '           Company        ', 'Name and Surname', 'Position', 'Address', 'City',
+             'Code', 'Second Code', 'Country', 'Phone #', 'Phone2 #', 'ID'])
 
 
         self.header = QHeaderView(QtCore.Qt.Horizontal)
@@ -44,15 +44,15 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.comboBox.addItems(["Column {0}".format(x) for x in range(self.proxymodel.columnCount())])
 
         self.searchbar.setStatusTip(u"searchbar")
-        self.searchbar.setToolTip(u"Фильтр по всем столбцам")
-        # слот который ждет в поисковой строе фиксированый текст
-        # можно попробовать вкорячить туда регвыражения PySide.QtGui.QSortFilterProxyModel.setFilterRegExp()
+        self.searchbar.setToolTip(u"Filter all columns")
+        # the slot that is waiting for a fixed text in the search system
+        # I can try using regexpressions PySide.QtGui.QSortFilterProxyModel.setFilterRegExp()
         self.searchbar.textChanged.connect(self.proxymodel.setFilterFixedString)
-        self.font = QtGui.QFont("Times New Roman", 10)
+        self.font = QtGui.QFont("Segoe ui", 11)
 
         self.tableView.setFont(self.font)
         self.tableView.resizeColumnsToContents()  # set column width to fit contents (set font first!)
-        self.tableView.setSortingEnabled(True)  # не работает без прокси-модели
+        self.tableView.setSortingEnabled(True)  # does not work without a proxy model
 
         self.tableView.sortByColumn(0,
                                     QtCore.Qt.AscendingOrder)
@@ -64,29 +64,29 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.toolbar = QToolBar("My main toolbar")
         self.addToolBar(self.toolbar)
 
-        self.button_action = QtGui.QAction("Экспорт в Excel", self)
-        self.button_action = QtGui.QAction(QtGui.QIcon("icons/report-excel.png"), "Экспорт в Excel", self)
-        self.button_action.setStatusTip("Экспорт в Excel")
+        self.button_action = QtGui.QAction("Export to Excel", self)
+        self.button_action = QtGui.QAction(QtGui.QIcon("icons/report-excel.png"), "Export to Excel", self)
+        self.button_action.setStatusTip("Export to Excel")
         self.button_action.triggered.connect(self.onMyToolBarButtonClickExport)
         self.toolbar.addAction(self.button_action)
 
-        self.button_action_hide_row = QtGui.QAction("Спрятать ряд", self)
-        self.button_action_hide_row = QtGui.QAction(QtGui.QIcon("icons/table-delete-row.png"), "Спрятать ряд", self)
-        self.button_action_hide_row.setStatusTip("Спрятать ряд")
+        self.button_action_hide_row = QtGui.QAction("Hide Row", self)
+        self.button_action_hide_row = QtGui.QAction(QtGui.QIcon("icons/table-delete-row.png"), "Hide Row", self)
+        self.button_action_hide_row.setStatusTip("Hide Row")
         self.button_action_hide_row.triggered.connect(self.onMyToolBarButtonClickHideRow)
         self.toolbar.addAction(self.button_action_hide_row)
 
-        self.button_action_hide_column = QtGui.QAction("Спрятать столбец", self)
-        self.button_action_hide_column = QtGui.QAction(QtGui.QIcon("icons/table-delete-column.png"), "Спрятать столбец",
+        self.button_action_hide_column = QtGui.QAction("Hide Column", self)
+        self.button_action_hide_column = QtGui.QAction(QtGui.QIcon("icons/table-delete-column.png"), "Hide Column",
                                                        self)
-        self.button_action_hide_column.setStatusTip("Спрятать столбец")
+        self.button_action_hide_column.setStatusTip("Hide Column")
         self.button_action_hide_column.triggered.connect(self.onMyToolBarButtonClickHideColumn)
         self.toolbar.addAction(self.button_action_hide_column)
 
-        self.button_action_reload = QtGui.QAction("Показать скрытые", self)
-        self.button_action_reload = QtGui.QAction(QtGui.QIcon("icons/arrow-circle-double.png"), "Показать скрытые",
+        self.button_action_reload = QtGui.QAction("Unhide All", self)
+        self.button_action_reload = QtGui.QAction(QtGui.QIcon("icons/arrow-circle-double.png"), "Unhide All",
                                                   self)
-        self.button_action_reload.setStatusTip("Перезагрузить таблицу")
+        self.button_action_reload.setStatusTip("Unhide All")
         self.button_action_reload.triggered.connect(self.onMyToolBarButtonClickShowAll)
         self.toolbar.addAction(self.button_action_reload)
 
@@ -95,7 +95,7 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         menu = QtWidgets.QMenu()
 
         if self.tableView.selectedIndexes():
-            change_data = menu.addAction("Изменить запись")
+            change_data = menu.addAction("Change record")
             change_data.setIcon(QtGui.QIcon("icons/document--pencil.png"))
             rows = sorted(set(index.row() for index in self.tableView.selectedIndexes()))
             for row in rows:
@@ -107,15 +107,15 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
             print(set(index.row() for index in self.tableView.selectedIndexes()))
             change_data.triggered.connect(lambda: self.model.changeData(self.dataId))
 
-            delete_data = menu.addAction("Удалить запись")
+            delete_data = menu.addAction("Delete record")
             delete_data.setIcon(QtGui.QIcon("icons/minus.png"))
             delete_data.triggered.connect(lambda: self.model.removeRows(self.tableView.currentIndex()))
 
-        add_new = menu.addAction("Добавить новую запись")
+        add_new = menu.addAction("Add new record")
         add_new.setIcon(QtGui.QIcon("icons/plus.png"))
         add_new.triggered.connect(lambda: self.model.newData())
 
-        export_to_excel = menu.addAction("Экспорт таблицы в Excel")
+        export_to_excel = menu.addAction("Export to Excel")
         export_to_excel.setIcon(QtGui.QIcon("icons/report-excel.png"))
         export_to_excel.triggered.connect(lambda: self.onMyToolBarButtonClick())
 
@@ -125,12 +125,12 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
 
     def onMyToolBarButtonClickExport(self):
         fname, _ = QFileDialog.getSaveFileName(self, 'Save File', '',
-                                               ".xlsx(*.xlsx)")  # не понимаю зачем нужна запятая и нижнее подчеркивание
+                                               ".xlsx(*.xlsx)")  # I don't understand why a comma and an underscore are needed
 
         workbook = xlsxwriter.Workbook(fname)
         sheet = workbook.add_worksheet("sheet")
 
-        model = self.tableView.model()  # наша вся таблица tableView передается в переменную model, которая потом перебирается по ячейкам циклами и записывается в файл
+        model = self.tableView.model()  # our entire tableView table is passed to the model variable, which is then iterated through the cells in cycles and written to a file
 
         for c in range(model.columnCount()):
             if not self.tableView.isColumnHidden(c):
@@ -151,11 +151,11 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
                     else:
                         pass
         workbook.close()
-        self.label.setText("Экспортировано в Эксель, файл:" + fname)
+        self.label.setText("Exported to Excel, file:" + fname)
 
 
     def onMyToolBarButtonClickHideRow(self):
-        self.label.setText("Ряд(ы) спрятаны")
+        self.label.setText("The rows are hidden")
         print('Hide row Clicked')
         print(sorted(set(index.row() for index in self.tableView.selectedIndexes())))
         rows = sorted(set(index.row() for index in self.tableView.selectedIndexes()))
@@ -164,7 +164,7 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
 
 
     def onMyToolBarButtonClickHideColumn(self):
-        self.label.setText("Столбец(ы) спрятаны")
+        self.label.setText("The columns are hidden")
         print('Hide column Clicked')
         print(sorted(set(index.column() for index in self.tableView.selectedIndexes())))
         columns = sorted(set(index.column() for index in self.tableView.selectedIndexes()))
@@ -173,8 +173,8 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
 
 
     def onMyToolBarButtonClickShowAll(self):
-        self.label.setText("Показать скрытые")
-        # TODO: # костыль. Надо делать нормально. Перебором (проверкой) всех скрытых
+        self.label.setText("Show All")
+        # TODO: #  It should be done normally. By searching (checking) all hidden
         for hided in range(1000):
             self.tableView.showColumn(hided)
             self.tableView.showRow(hided)
@@ -187,14 +187,14 @@ if __name__ == '__main__':
     with open('.\configs\style.qss', 'r') as f:
         style = f.read()
         # Set the current style sheet
-    # app.setStyleSheet(style) #Эксперименты со стилем оформления. Можно раскоментировать эту строку и стиль изменится
+    # app.setStyleSheet(style) # Experiments with the design style. You can uncomment this line and the style will change
 
     window = MainWindow()
     window.show()
     app.exec()
 
-# TODO: # # создание кастомного первого столбца таблицы - работает хреново#
-# self.modelHeaderV = QtGui.QStandardItemModel()  # сначала создадим модель заголовка и положим в эту модель названия заголовков
+# TODO: # # creating a custom first column of the table - it sucks#
+# self.modelHeaderV = QtGui.QStandardItemModel()
 # numbers = [i for i in range(1, len(self.user_data) + 1)]
 # str(numbers).replace(',', '.').replace('[', '').replace(']', '.').split()
 # self.modelHeaderV.setVerticalHeaderLabels(str(numbers).replace(',', '.').replace('[', '').replace(']',

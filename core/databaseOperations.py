@@ -85,9 +85,10 @@ def delete_pers(person_id):
 
     return rows_deleted
 
-def update_row(person_id, fio):
+def update_row(person_id, *args):
     """ update surnamename based on the person id """
-    sql = """ UPDATE customers SET "3" = %s WHERE id = %s"""
+    sql = """ UPDATE customers SET "1" = %s, "3" = %s, "2" = %s,
+     "4" = %s, "6" = %s, "5" = %s, "7" = %s, "8" = %s, "9" = %s, "10" = %s, "11" = %s  WHERE id = %s"""
     conn = None
     updated_rows = 0
     try:
@@ -98,7 +99,7 @@ def update_row(person_id, fio):
         # create a new cursor
         cur = conn.cursor()
         # execute the UPDATE  statement
-        cur.execute(sql, (fio, person_id))
+        cur.execute(sql, (*args, person_id))
         # get the number of updated rows
         updated_rows = cur.rowcount
         # Commit the changes to the database
