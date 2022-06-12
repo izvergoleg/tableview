@@ -1,6 +1,6 @@
 from PySide6 import QtWidgets
 from gui import Ui_Dialog
-from lib import databaseOperations
+from core import databaseOperations
 
 
 class DialogWindowChange(Ui_Dialog, QtWidgets.QDialog):
