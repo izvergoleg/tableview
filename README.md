@@ -1,7 +1,7 @@
 # Tableview
 Simple table work project. Using Python, PySide6, PostgreSQL 14, PyCharm IDE.
 
-![alt text](https://github.com/izvergoleg/tableview/blob/master/MyProject.jpg)
+![alt text](https://github.com/izvergoleg/tableview/blob/master/MyProject1.jpg)
 
 ## Requirements
 
