@@ -35,20 +35,40 @@ class DialogWindowChange(Ui_Dialog, QtWidgets.QDialog):
         self.done(True)
 
 
-class DialogWindowNew(QtWidgets.QDialog):
-    def __init__(self):
+
+class DialogWindowNew(Ui_Dialog, QtWidgets.QDialog):
+    def __init__(self) -> None:
         super().__init__()
+        self.setupUi(self)
 
-        self.setWindowTitle("HELLO!")
+        self.lineEdit_ID.setReadOnly(False)
 
-        QBtn = QtWidgets.QDialogButtonBox.Apply | QtWidgets.QDialogButtonBox.Ok | QtWidgets.QDialogButtonBox.Cancel
 
-        self.buttonBox = QtWidgets.QDialogButtonBox(QBtn)
-        self.buttonBox.accepted.connect(self.accept)
-        self.buttonBox.rejected.connect(self.reject)
+    def accept(self) -> None:
 
-        self.layout = QtWidgets.QVBoxLayout()
-        message = QtWidgets.QLabel("Something happened, is that OK?")
-        self.layout.addWidget(message)
-        self.layout.addWidget(self.buttonBox)
-        self.setLayout(self.layout)
+        print("OK clicked")
+
+        databaseOperations.new_row(self.lineEdit_ID.text(), self.lineEdit_2_fio.text(), self.lineEdit_3_comp.text(),
+                                      self.lineEdit_4_position.text(), self.lineEdit_5_city.text(), self.lineEdit_6_address.text(),
+                                      self.lineEdit_7_code1.text(), self.lineEdit_8_code2.text(), self.lineEdit_9_country.text(),
+                                      self.lineEdit_10_phone1.text(), self.lineEdit_11_phone2.text())
+        self.done(True)
+
+
+# class DialogWindowNew(QtWidgets.QDialog):
+#     def __init__(self):
+#         super().__init__()
+#
+#         self.setWindowTitle("HELLO!")
+#
+#         QBtn = QtWidgets.QDialogButtonBox.Apply | QtWidgets.QDialogButtonBox.Ok | QtWidgets.QDialogButtonBox.Cancel
+#
+#         self.buttonBox = QtWidgets.QDialogButtonBox(QBtn)
+#         self.buttonBox.accepted.connect(self.accept)
+#         self.buttonBox.rejected.connect(self.reject)
+#
+#         self.layout = QtWidgets.QVBoxLayout()
+#         message = QtWidgets.QLabel("Something happened, is that OK?")
+#         self.layout.addWidget(message)
+#         self.layout.addWidget(self.buttonBox)
+#         self.setLayout(self.layout)

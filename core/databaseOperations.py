@@ -114,6 +114,35 @@ def update_row(person_id, *args):
 
     return updated_rows
 
+def new_row(*args):
+    """ new row """
+    sql = """   INSERT INTO customers ("1", "3", "2", "4", "6", "5", "7", "8", "9", "10", "11")
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """
+    conn = None
+    updated_rows = 0
+    try:
+        # read database configuration
+        params = config.config()
+        # connect to the PostgreSQL database
+        conn = psycopg2.connect(**params)
+        # create a new cursor
+        cur = conn.cursor()
+        # execute the UPDATE  statement
+        cur.execute(sql, (*args, ))
+        # get the number of updated rows
+        updated_rows = cur.rowcount
+        # Commit the changes to the database
+        conn.commit()
+        # Close communication with the PostgreSQL database
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+
+    return updated_rows
+
 def getRowData(pers_id):
     """ query row from the customer table """
     _sql = """ SELECT * FROM customers WHERE id = %s """

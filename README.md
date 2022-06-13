@@ -24,6 +24,8 @@ configparser
 - [x] Connection to DB
 - [x] Simple tableview
 - [ ] Controls :tada:
+- [ ] Migration from DB-API *(psycopg2)* to ORM *(peewee)* 
+
 
  to @DanMikheenko [^1]
 
